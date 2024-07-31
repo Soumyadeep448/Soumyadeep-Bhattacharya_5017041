@@ -1,13 +1,13 @@
 Exercise 1: Inventory Management System
 
-1. Understand the Problem
 
-Why Data Structures and Algorithms are Essential in Handling Large Inventories
+
+Why Data Structures and Algorithms are Essential in Handling Large Inventories -
 
 Data structures and algorithms are fundamental in managing large inventories because they determine how data is stored, organized, and accessed efficiently. With a large number of products, the choice of data structures and algorithms can significantly impact the performance of operations such as adding, updating, retrieving, and deleting inventory items. Efficient data management ensures quick response times, optimal use of memory, and scalability as the inventory grows.
 
 
-Types of Data Structures Suitable for Inventory Management
+Types of Data Structures Suitable for Inventory Management -
 
 1. ArrayList (Dynamic Arrays):  Easy to implement, allows random access, and is suitable for scenarios where the number of items is relatively stable.
 
@@ -22,13 +22,12 @@ Types of Data Structures Suitable for Inventory Management
 
 2. Setup
 
-Create a new project for the inventory management system. This can be done in any preferred programming language. For this example, we will use Java.
+We will be creating a new project for the inventory management system and we will use Java for it.
 
 
 
        
- ◦ Choose an appropriate data structure to store the products (e.g., ArrayList, HashMap).
-
+ 
 For this implementation, we will use `HashMap` to store the products, with `productId` as the key for quick access.
 
 
