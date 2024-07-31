@@ -1,0 +1,63 @@
+Exercise 5: Task Management System
+
+1. Understanding Linked Lists
+
+Singly Linked List
+- Description: A singly linked list is a type of data structure where each element (node) contains a reference (link) to the next node in the sequence. The first node is called the head, and the last node points to `null`.
+
+- Structure: Each node has two components:
+  - Data: Stores the value or information.
+  - Next: A pointer/reference to the next node in the sequence.
+
+- Advantages:
+  - Dynamic size: Can grow and shrink in size as needed.
+  - Efficient insertion/deletion: Can insert or delete nodes without reorganizing the entire structure (O(1) for insertions/deletions at the head).
+- Disadvantages:
+
+  - No direct access: Requires traversal from the head to access any node (O(n) for search).
+  - More memory: Requires additional memory for storing the next pointer.
+
+Doubly Linked List
+
+- Description: A doubly linked list is similar to a singly linked list, but each node contains two references: one to the next node and another to the previous node.
+
+- Structure: Each node has three components:
+  - Data: Stores the value or information.
+  - Next: A pointer/reference to the next node.
+  - Prev: A pointer/reference to the previous node.
+
+- Advantages
+  - Bidirectional traversal: Can be traversed in both forward and backward directions.
+  - More efficient deletion: Can delete a node without traversing from the head if the node pointer is known.
+
+- Disadvantages:
+  - More memory: Requires additional memory for storing the next and previous pointers.
+  - More complex: More complex to implement and manage.
+
+
+
+4. Analysis
+
+Time Complexity of Each Operation
+- Add:
+  - Best Case: O(1) (when adding at the head)
+  - Worst Case: O(n) (when adding at the end, requiring traversal)
+- Search:
+  - Best Case: O(1) (if the element to be searched is at the head)
+  - Average Case: O(n)
+  - Worst Case: O(n)
+- Traverse:
+  - Time Complexity: O(n) (since we need to visit each node)
+- Delete:
+  - Best Case: O(1) (if the element to be deleted is at the head)
+  - Average Case: O(n)
+  - Worst Case: O(n)
+
+Advantages of Linked Lists over Arrays for Dynamic Data- 
+Dynamic Size: Linked lists can grow and shrink dynamically, making them suitable for applications where the number of elements can change frequently.
+- 
+Efficient Insertions/Deletions: Inserting or deleting elements in a linked list can be done in O(1) time if the position is known, without the need for shifting elements as in arrays.
+- 
+Memory Utilization: Linked lists use memory more efficiently for dynamic data because they do not require a predefined size, reducing the risk of wasted memory or overflow.
+
+In summary, while arrays provide fast access to elements using indices, linked lists offer more flexibility and efficiency for dynamic datasets where frequent insertions and deletions are required.

@@ -1,0 +1,51 @@
+Exercise 7: Financial Forecasting
+
+
+
+Concept of Recursion
+
+Recursion is a method of solving problems where a function calls itself as a subroutine. This allows the function to be repeated several times, as it can call itself during its execution.
+
+- Base Case and Recursive Case: 
+
+  - Base Case: The condition under which the recursion ends. Without a base case, the function would call itself indefinitely, leading to a stack overflow.
+
+  - Recursive Case: The part of the function where the recursion occurs. The function calls itself with modified arguments to gradually approach the base case.
+
+- Advantages: 
+  - Simplifies complex problems by breaking them down into simpler sub-problems.
+  - Can be more intuitive and easier to implement for certain types of problems, such as tree traversal, factorial calculation, and the Fibonacci sequence.
+
+- Disadvantages:
+  - Can lead to high memory usage due to the large number of function calls and stack frames.
+  - May result in excessive computation if not optimized properly.
+3. Implementation
+
+Recursive Algorithm to Predict Future Values
+
+The `calculateFutureValue` method recursively calculates the future value based on the current value, growth rate, and the number of periods.
+
+Implementation Explanation
+- Base Case: When the number of periods is 0, return the current value.
+- Recursive Case: Multiply the current value by `(1 + growthRate)` and decrement the number of periods. This process repeats until the base case is reached.
+
+4. Analysis
+
+Time Complexity
+
+- Time Complexity: The time complexity of the recursive algorithm is O(n), where n is the number of periods. This is because each recursive call processes one period, and there are n periods in total.
+
+Optimizing the Recursive Solution
+
+- Memoization: Memoization involves storing the results of expensive function calls and reusing the cached result when the same inputs occur again. This can help avoid redundant calculations and improve efficiency.
+
+- Iterative Approach: In many cases, converting a recursive algorithm to an iterative one can help avoid the overhead of multiple function calls and reduce memory usage. For our future value calculation, an iterative approach would involve using a loop to calculate the future value.
+
+
+Hence,
+
+- Recursive Approach: Provides a clear and straightforward solution, but can lead to excessive computation and stack overflow for large input sizes.
+
+- Iterative Approach: More efficient in terms of memory usage and avoids the overhead of recursive calls, making it suitable for large datasets.
+
+- When to Use: Use recursion for problems that naturally fit the recursive paradigm and when the input size is small. Use iteration or memoization for performance-critical applications or large input sizes.

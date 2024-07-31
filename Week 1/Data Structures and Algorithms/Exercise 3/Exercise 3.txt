@@ -1,0 +1,66 @@
+Exercise 3: Sorting Customer Orders
+
+
+Bubble Sort
+
+Bubble Sort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. This process is repeated until the list is sorted.
+- Time Complexity:
+  - Best Case: O(n) (when the array is already sorted)
+  - Average Case: O(n^2)
+  - Worst Case: O(n^2)
+
+Space Complexity: O(1) (in-place sorting)
+
+Insertion Sort
+
+ Insertion Sort builds the final sorted array one item at a time. It is much less efficient on large lists than more advanced algorithms like Quick Sort, Merge Sort, or Heap Sort.
+
+- Time Complexity:
+  - Best Case: O(n) (when the array is already sorted)
+  - Average Case: O(n^2)
+  - Worst Case: O(n^2)
+
+Space Complexity: O(1) (in-place sorting)
+
+Quick Sort
+
+Quick Sort is a divide-and-conquer algorithm. It works by selecting a 'pivot' element from the array and partitioning the other elements into two sub-arrays, according to whether they are less than or greater than the pivot. The sub-arrays are then sorted recursively.
+
+- Time Complexity:
+  - Best Case: O(n log n)
+  - Average Case: O(n log n)
+  - Worst Case: O(n^2) (when the smallest or largest element is always chosen as the pivot)
+
+- Space Complexity: O(log n) (due to recursion)
+
+Merge Sort
+
+Merge Sort is a divide-and-conquer algorithm that was invented by John von Neumann in 1945. It divides the unsorted list into n sublists, each containing one element, then repeatedly merges sublists to produce new sorted sublists until there is only one sublist remaining.
+
+- Time Complexity: O(n log n) for all cases
+- Space Complexity: O(n) (not in-place sorting)
+
+
+4. Analysis
+
+Performance Comparison
+
+- Bubble Sort:
+  - Best Case: O(n) (when the list is already sorted)
+  - Average Case: O(n^2)
+  - Worst Case: O(n^2)
+
+- Quick Sort:
+  - Best Case: O(n log n)
+  - Average Case: O(n log n)
+  - Worst Case: O(n^2) (with poor pivot choices)
+
+Why Quick Sort is Generally Preferred over Bubble Sort
+
+- Efficiency: Quick Sort is generally much faster than Bubble Sort because its average and best-case time complexities are O(n log n), whereas Bubble Sort has an average and worst-case time complexity of O(n^2).
+
+- Scalability: Quick Sort handles larger datasets more efficiently compared to Bubble Sort.
+
+- Adaptive Nature: Quick Sort can be optimized with techniques like choosing a better pivot or implementing hybrid algorithms (like introsort) to handle worst-case scenarios, whereas Bubble Sort has limited scope for optimization.
+
+While Bubble Sort is easier to implement and understand, Quick Sort is more efficient and practical for sorting large lists in real-world applications.

@@ -1,0 +1,61 @@
+Exercise 4: Employee Management System
+
+
+1. Understanding Array Representation
+
+How Arrays are Represented in Memory
+
+- Contiguous Memory Allocation: Arrays are stored in contiguous memory locations. This means that each element of the array is placed next to the previous one in memory.
+
+- Indexing: Each element in an array can be accessed directly using its index, which makes retrieval very fast (O(1) time complexity).
+
+- Fixed Size: The size of an array is defined at the time of its creation and cannot be changed dynamically.
+
+Advantages of Arrays
+
+- Fast Access: Direct access to elements using an index allows for very fast retrieval.
+
+- Cache Friendly: Contiguous memory allocation makes arrays cache-friendly, which can lead to performance improvements in certain scenarios.
+
+- Simple Implementation: Arrays are simple to understand and use, and they have a straightforward implementation in most programming languages.
+
+
+
+4. Analysis
+
+Time Complexity of Each Operation
+
+- Add:
+  - Best Case: O(1) (when there is space available in the array)
+  - Worst Case: O(1) (since we check for space and add at the end)
+
+- Search:
+  - Best Case: O(1) (if the element to be searched is at the beginning)
+  - Average Case: O(n)
+  - Worst Case: O(n)
+
+- Traverse:
+  - Time Complexity: O(n) (since we need to visit each element)
+
+- Delete:
+  - Best Case: O(1) (if the element to be deleted is at the end)
+  - Average Case: O(n)
+  - Worst Case: O(n)
+
+Limitations of Arrays
+
+- Fixed Size: Arrays have a fixed size, which means the size must be known in advance and cannot be changed dynamically. This can lead to wasted memory or insufficient space.
+
+- Inefficient Insertion and Deletion: Inserting or deleting elements in the middle of the array requires shifting elements, which is inefficient (O(n) time complexity).
+
+- Search Efficiency: Searching for an element in an unsorted array requires a linear search, which is O(n) in time complexity.
+
+When to Use Arrays
+
+- When Size is Fixed: Arrays are suitable when the size of the dataset is known in advance and does not change.
+
+- Fast Access Required: Arrays provide O(1) time complexity for accessing elements using their index, making them ideal for scenarios where fast access is crucial.
+
+- Memory Contiguity: Arrays are beneficial when memory contiguity is important, such as for certain performance optimizations or when interfacing with low-level hardware or libraries.
+
+In summary, while arrays offer fast access and are simple to use, their fixed size and inefficiency in insertion and deletion operations make them less suitable for dynamic datasets. In such cases, more flexible data structures like linked lists or dynamic arrays (ArrayLists in Java) may be preferred.
