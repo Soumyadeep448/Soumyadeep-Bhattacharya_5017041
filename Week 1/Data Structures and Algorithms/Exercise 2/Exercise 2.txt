@@ -2,7 +2,7 @@ Exercise 2: E-commerce Platform Search Function
 
 
 
-1. Understand Asymptotic Notation
+
 
 Big O Notation
 
@@ -14,7 +14,7 @@ Big O Notation is a mathematical notation used to describe the upper bound of an
 - O(n log n): Linearithmic time complexity, the running time grows as \( n \) multiplied by \( \log n \).
 - O(n^2): Quadratic time complexity, the running time grows quadratically with the input size.
 
-#### Best, Average, and Worst-Case Scenarios for Search Operations
+Best, Average, and Worst-Case Scenarios for Search Operations
 
 - Best Case: The scenario where the algorithm performs the minimum number of operations. For example, in a search operation, the best case is finding the element on the first try.
 
