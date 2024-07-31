@@ -4,7 +4,7 @@ public class Logger {
 
     
     private Logger() {
-        // Initialization code, if any
+        
     }
 
     
