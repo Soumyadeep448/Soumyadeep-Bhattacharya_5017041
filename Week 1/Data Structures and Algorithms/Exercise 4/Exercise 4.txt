@@ -1,7 +1,7 @@
 Exercise 4: Employee Management System
 
 
-1. Understanding Array Representation
+1.
 
 How Arrays are Represented in Memory
 

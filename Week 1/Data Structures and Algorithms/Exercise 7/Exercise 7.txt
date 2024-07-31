@@ -2,7 +2,7 @@ Exercise 7: Financial Forecasting
 
 
 
-Concept of Recursion
+Recursion
 
 Recursion is a method of solving problems where a function calls itself as a subroutine. This allows the function to be repeated several times, as it can call itself during its execution.
 
