@@ -1,0 +1,54 @@
+Exercise 3: Stored Procedures
+
+Scenario 1: The bank needs to process monthly interest for all savings accounts.
+
+CREATE OR REPLACE PROCEDURE ProcessMonthlyInterest IS
+BEGIN
+    FOR account IN (SELECT * FROM Accounts WHERE AccountType = 'Savings') LOOP
+        UPDATE Accounts
+        SET Balance = Balance + (Balance * 0.01)
+        WHERE AccountID = account.AccountID;
+    END LOOP;
+
+    COMMIT;
+END ProcessMonthlyInterest;
+
+
+
+Scenario 2: The bank wants to implement a bonus scheme for employees based on their performance.
+
+CREATE OR REPLACE PROCEDURE UpdateEmployeeBonus(p_department VARCHAR2, p_bonus_percentage NUMBER) IS
+BEGIN
+    UPDATE Employees
+    SET Salary = Salary + (Salary * p_bonus_percentage / 100)
+    WHERE Department = p_department;
+
+    COMMIT;
+END UpdateEmployeeBonus;
+
+
+Scenario 3: Customers should be able to transfer funds between their accounts.
+
+CREATE OR REPLACE PROCEDURE TransferFunds(p_from_account NUMBER, p_to_account NUMBER, p_amount NUMBER) IS
+    v_balance NUMBER;
+BEGIN
+    SELECT Balance INTO v_balance FROM Accounts WHERE AccountID = p_from_account;
+
+    IF v_balance >= p_amount THEN
+        UPDATE Accounts
+        SET Balance = Balance - p_amount
+        WHERE AccountID = p_from_account;
+
+        UPDATE Accounts
+        SET Balance = Balance + p_amount
+        WHERE AccountID = p_to_account;
+
+        COMMIT;
+    ELSE
+        RAISE_APPLICATION_ERROR(-20001, 'Insufficient balance.');
+    END IF;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        INSERT INTO ErrorLog (ErrorMessage) VALUES (SQLERRM);
+END TransferFunds;

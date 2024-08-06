@@ -1,0 +1,149 @@
+Exercise 7: Packages
+
+Scenario 1: Group all customer-related procedures and functions into a package.
+
+CREATE OR REPLACE PACKAGE CustomerManagement AS
+    PROCEDURE AddNewCustomer(p_customer_id NUMBER, p_name VARCHAR2, p_dob DATE, p_balance NUMBER);
+    PROCEDURE UpdateCustomerDetails(p_customer_id NUMBER, p_name VARCHAR2, p_dob DATE, p_balance NUMBER);
+    FUNCTION GetCustomerBalance(p_customer_id NUMBER) RETURN NUMBER;
+END CustomerManagement;
+
+CREATE OR REPLACE PACKAGE BODY CustomerManagement AS
+    PROCEDURE AddNewCustomer(p_customer_id NUMBER, p_name VARCHAR2, p_dob DATE, p_balance NUMBER) IS
+    BEGIN
+        INSERT INTO Customers (CustomerID, Name, DOB, Balance, LastModified)
+        VALUES (p_customer_id, p_name, p_dob, p_balance, SYSDATE);
+        
+        COMMIT;
+    EXCEPTION
+        WHEN DUP_VAL_ON_INDEX THEN
+            INSERT INTO ErrorLog (ErrorMessage) VALUES ('Customer ID already exists: ' || p_customer_id);
+        WHEN OTHERS THEN
+            ROLLBACK;
+            INSERT INTO ErrorLog (ErrorMessage) VALUES (SQLERRM);
+    END AddNewCustomer;
+
+    PROCEDURE UpdateCustomerDetails(p_customer_id NUMBER, p_name VARCHAR2, p_dob DATE, p_balance NUMBER) IS
+    BEGIN
+        UPDATE Customers
+        SET Name = p_name, DOB = p_dob, Balance = p_balance, LastModified = SYSDATE
+        WHERE CustomerID = p_customer_id;
+
+        COMMIT;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            INSERT INTO ErrorLog (ErrorMessage) VALUES ('Customer ID not found: ' || p_customer_id);
+        WHEN OTHERS THEN
+            ROLLBACK;
+            INSERT INTO ErrorLog (ErrorMessage) VALUES (SQLERRM);
+    END UpdateCustomerDetails;
+
+    FUNCTION GetCustomerBalance(p_customer_id NUMBER) RETURN NUMBER IS
+        v_balance NUMBER;
+    BEGIN
+        SELECT Balance INTO v_balance FROM Customers WHERE CustomerID = p_customer_id;
+        RETURN v_balance;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            RETURN 0;
+    END GetCustomerBalance;
+END CustomerManagement;
+
+
+Scenario 2: Create a package to manage employee data.
+
+CREATE OR REPLACE PACKAGE EmployeeManagement AS
+    PROCEDURE HireEmployee(p_employee_id NUMBER, p_name VARCHAR2, p_position VARCHAR2, p_salary NUMBER, p_department VARCHAR2, p_hire_date DATE);
+    PROCEDURE UpdateEmployeeDetails(p_employee_id NUMBER, p_name VARCHAR2, p_position VARCHAR2, p_salary NUMBER, p_department VARCHAR2);
+    FUNCTION CalculateAnnualSalary(p_employee_id NUMBER) RETURN NUMBER;
+END EmployeeManagement;
+
+CREATE OR REPLACE PACKAGE BODY EmployeeManagement AS
+    PROCEDURE HireEmployee(p_employee_id NUMBER, p_name VARCHAR2, p_position VARCHAR2, p_salary NUMBER, p_department VARCHAR2, p_hire_date DATE) IS
+    BEGIN
+        INSERT INTO Employees (EmployeeID, Name, Position, Salary, Department, HireDate)
+        VALUES (p_employee_id, p_name, p_position, p_salary, p_department, p_hire_date);
+
+        COMMIT;
+    EXCEPTION
+        WHEN DUP_VAL_ON_INDEX THEN
+            INSERT INTO ErrorLog (ErrorMessage) VALUES ('Employee ID already exists: ' || p_employee_id);
+        WHEN OTHERS THEN
+            ROLLBACK;
+            INSERT INTO ErrorLog (ErrorMessage) VALUES (SQLERRM);
+    END HireEmployee;
+
+    PROCEDURE UpdateEmployeeDetails(p_employee_id NUMBER, p_name VARCHAR2, p_position VARCHAR2, p_salary NUMBER, p_department VARCHAR2) IS
+    BEGIN
+        UPDATE Employees
+        SET Name = p_name, Position = p_position, Salary = p_salary, Department = p_department
+        WHERE EmployeeID = p_employee_id;
+
+        COMMIT;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            INSERT INTO ErrorLog (ErrorMessage) VALUES ('Employee ID not found: ' || p_employee_id);
+        WHEN OTHERS THEN
+            ROLLBACK;
+            INSERT INTO ErrorLog (ErrorMessage) VALUES (SQLERRM);
+    END UpdateEmployeeDetails;
+
+    FUNCTION CalculateAnnualSalary(p_employee_id NUMBER) RETURN NUMBER IS
+        v_salary NUMBER;
+    BEGIN
+        SELECT Salary INTO v_salary FROM Employees WHERE EmployeeID = p_employee_id;
+        RETURN v_salary * 12;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            RETURN 0;
+    END CalculateAnnualSalary;
+END EmployeeManagement;
+
+
+
+Scenario 3: Group all account-related operations into a package.
+
+CREATE OR REPLACE PACKAGE AccountOperations AS
+    PROCEDURE OpenAccount(p_account_id NUMBER, p_customer_id NUMBER, p_account_type VARCHAR2, p_balance NUMBER);
+    PROCEDURE CloseAccount(p_account_id NUMBER);
+    FUNCTION GetTotalBalance(p_customer_id NUMBER) RETURN NUMBER;
+END AccountOperations;
+
+CREATE OR REPLACE PACKAGE BODY AccountOperations AS
+    PROCEDURE OpenAccount(p_account_id NUMBER, p_customer_id NUMBER, p_account_type VARCHAR2, p_balance NUMBER) IS
+    BEGIN
+        INSERT INTO Accounts (AccountID, CustomerID, AccountType, Balance, LastModified)
+        VALUES (p_account_id, p_customer_id, p_account_type, p_balance, SYSDATE);
+
+        COMMIT;
+    EXCEPTION
+        WHEN DUP_VAL_ON_INDEX THEN
+            INSERT INTO ErrorLog (ErrorMessage) VALUES ('Account ID already exists: ' || p_account_id);
+        WHEN OTHERS THEN
+            ROLLBACK;
+            INSERT INTO ErrorLog (ErrorMessage) VALUES (SQLERRM);
+    END OpenAccount;
+
+    PROCEDURE CloseAccount(p_account_id NUMBER) IS
+    BEGIN
+        DELETE FROM Accounts WHERE AccountID = p_account_id;
+
+        COMMIT;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            INSERT INTO ErrorLog (ErrorMessage) VALUES ('Account ID not found: ' || p_account_id);
+        WHEN OTHERS THEN
+            ROLLBACK;
+            INSERT INTO ErrorLog (ErrorMessage) VALUES (SQLERRM);
+    END CloseAccount;
+
+    FUNCTION GetTotalBalance(p_customer_id NUMBER) RETURN NUMBER IS
+        v_total_balance NUMBER;
+    BEGIN
+        SELECT SUM(Balance) INTO v_total_balance FROM Accounts WHERE CustomerID = p_customer_id;
+        RETURN v_total_balance;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            RETURN 0;
+    END GetTotalBalance;
+END AccountOperations;
