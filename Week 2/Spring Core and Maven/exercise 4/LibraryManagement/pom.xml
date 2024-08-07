@@ -8,19 +8,19 @@
     <packaging>jar</packaging>
 
     <dependencies>
-        <!-- Spring Context -->
+        
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>5.3.10</version>
         </dependency>
-        <!-- Spring AOP -->
+        
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
             <version>5.3.10</version>
         </dependency>
-        <!-- Spring WebMVC -->
+        
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
